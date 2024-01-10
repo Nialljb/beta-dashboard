@@ -1,11 +1,11 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 import pandas as pd
 from sqlalchemy import create_engine
 
 # Create a database engine
-engine = create_engine('postgresql://username:password@localhost:5432/database_name')
+engine = create_engine('testData.csv')
 
 # Read data from the relational database
 df = pd.read_sql_query('SELECT * FROM table_name', engine)
@@ -25,8 +25,8 @@ app.layout = html.Div(children=[
         id='example-graph',
         figure={
             'data': [
-                {'x': df['column1'], 'y': df['column2'], 'type': 'bar', 'name': 'Column 1'},
-                {'x': df['column1'], 'y': df['column3'], 'type': 'bar', 'name': 'Column 2'},
+                {'x': df['PID'], 'y': df['TICV'], 'type': 'bar', 'name': 'Column 1'},
+                {'x': df['PID'], 'y': df['wm_vol'], 'type': 'bar', 'name': 'Column 2'},
             ],
             'layout': {
                 'title': 'Data Visualization'
